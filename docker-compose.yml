@@ -28,7 +28,7 @@ services:
       - phpldapadmin_nginx_config:/etc/nginx/conf.d:ro
       - phpldapadmin_htdocs:/usr/share/phpldapadmin/htdocs:ro
     ports:
-      - 80:8080/tcp
+      - 8000:8080/tcp
       # You need to set up HTTPS yourself if necessary.
       # Basically you need to generate the cert, move it to the config dir and edit the nginx configuration.
       # Remember to change `http` to `https` in the healthcheck, too.
