@@ -11,6 +11,7 @@ services:
       - phpldapadmin_htdocs:/usr/share/phpldapadmin/htdocs
       - phpldapadmin_config:/etc/phpldapadmin
       - phpldapadmin_nginx_config:/etc/nginx/conf.d
+      - ./config.php:/etc/phpldapadmin/config.php
   http-server:
     image: nginx:stable
     restart: unless-stopped
