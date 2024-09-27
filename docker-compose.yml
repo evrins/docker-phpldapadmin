@@ -1,7 +1,7 @@
-version: '3.4'
+version: "3.4"
 services:
   phpldapadmin:
-    image: docker.io/kalaksi/phpldapadmin
+    image: ghcr.io/evrins/phpldapadmin
     # You can also use GitLab as an alternative to Docker Hub:
     # image: registry.gitlab.com/kalaksi-containers/phpldapadmin
     restart: unless-stopped
