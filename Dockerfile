@@ -1,8 +1,8 @@
 # Copyright (c) 2018 kalaksi@users.noreply.github.com.
 # This work is licensed under the terms of the MIT license. For a copy, see <https://opensource.org/licenses/MIT>.
 
-FROM debian:12.6-slim
-LABEL maintainer="kalaksi@users.noreply.github.com"
+FROM debian:12.7-slim
+LABEL maintainer="evrins@users.noreply.github.com"
 
 # Some notes about the choices behind this Dockerfile:
 # - Not using the official PHP image since it doesn't use the slim-flavor.
@@ -13,11 +13,12 @@ ENV PHPLDAPADMIN_UID 70859
 ENV PHPLDAPADMIN_GID 70859
 
 # Some trickery is needed to avoid unnecessary dependencies
-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      php8.2-fpm \
-      php8.2-ldap \
-      php8.2-xml \
-      ucf && \
+RUN apt-get update && \
+    DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+    php8.2-fpm \
+    php8.2-ldap \
+    php8.2-xml \
+    ucf && \
     apt-get download phpldapadmin && \
     DEBIAN_FRONTEND=noninteractive dpkg --force-all -i phpldapadmin_*.deb && \
     rm phpldapadmin_*.deb && \
