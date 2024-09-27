@@ -46,7 +46,7 @@
 #  $config->custom->debug['file'] = '/tmp/pla_debug.log';
 
 /* phpLDAPadmin can encrypt the content of sensitive cookies if you set this
-   to a big random string. */
+ to a big random string. */
 // $config->custom->session['blowfish'] = null;
 
 /* If your auth_type is http, you can override your HTTP Authentication Realm. */
@@ -61,7 +61,7 @@
 // $config->custom->appearance['language'] = 'auto';
 
 /* The temporary storage directory where we will put jpegPhoto data
-   This directory must be readable and writable by your web server. */
+ This directory must be readable and writable by your web server. */
 // $config->custom->jpeg['tmpdir'] = '/tmp';     // Example for Unix systems
 #  $config->custom->jpeg['tmpdir'] = 'c:\\temp'; // Example for Windows systems
 
@@ -172,7 +172,7 @@ $config->custom->commands['script'] = array(
  *********************************************/
 
 /* If you want to choose the appearance of the tree, specify a class name which
-   inherits from the Tree class. */
+ inherits from the Tree class. */
 // $config->custom->appearance['tree'] = 'AJAXTree';
 #  $config->custom->appearance['tree'] = 'HTMLTree';
 
@@ -192,7 +192,7 @@ $config->custom->commands['script'] = array(
 // $config->custom->appearance['tree_filter'] = '(objectclass=*)';
 
 /* The height and width of the tree. If these values are not set, then
-   no tree scroll bars are provided. */
+ no tree scroll bars are provided. */
 // $config->custom->appearance['tree_height'] = null;
 #  $config->custom->appearance['tree_height'] = 600;
 // $config->custom->appearance['tree_width'] = null;
@@ -203,7 +203,7 @@ $config->custom->commands['script'] = array(
 #  $config->custom->appearance['tree_icons'] = 4;
 
 /* Confirm create and update operations, allowing you to review the changes
-   and optionally skip attributes during the create/update operation. */
+ and optionally skip attributes during the create/update operation. */
 // $config->custom->confirm['create'] = true;
 // $config->custom->confirm['update'] = true;
 
@@ -217,16 +217,16 @@ $config->custom->commands['script'] = array(
  *********************************************/
 
 /* Use this array to map attribute names to user friendly names. For example, if
-   you don't want to see "facsimileTelephoneNumber" but rather "Fax". */
+ you don't want to see "facsimileTelephoneNumber" but rather "Fax". */
 // $config->custom->appearance['friendly_attrs'] = array();
-$config->custom->appearance['friendly_attrs'] = array(
-	'facsimileTelephoneNumber' => 'Fax',
-	'gid'                      => 'Group',
-	'mail'                     => 'Email',
-	'telephoneNumber'          => 'Telephone',
-	'uid'                      => 'User Name',
-	'userPassword'             => 'Password'
-);
+$config->custom->appearance["friendly_attrs"] = [
+    "facsimileTelephoneNumber" => "Fax",
+    "gid" => "Group",
+    "mail" => "Email",
+    "telephoneNumber" => "Telephone",
+    "uid" => "User Name",
+    "userPassword" => "Password",
+];
 
 /*********************************************
  * Hidden attributes                         *
@@ -307,11 +307,11 @@ $config->custom->appearance['friendly_attrs'] = array(
 $servers = new Datastore();
 
 /* $servers->NewServer('ldap_pla') must be called before each new LDAP server
-   declaration. */
+ declaration. */
 // $servers->newServer('ldap_pla');
 
 /* A convenient name that will appear in the tree viewer and throughout
-   phpLDAPadmin to identify this LDAP server to users. */
+ phpLDAPadmin to identify this LDAP server to users. */
 // $servers->setValue('server','name','My LDAP Server');
 
 /* Examples:
@@ -325,7 +325,7 @@ $servers = new Datastore();
 // $servers->setValue('server','port',389);
 
 /* Array of base DNs of your LDAP server. Leave this blank to have phpLDAPadmin
-   auto-detect it for you. */
+ auto-detect it for you. */
 // $servers->setValue('server','base',array('dc=example,dc=com'));
 
 /* Five options for auth_type:
@@ -357,7 +357,7 @@ $servers = new Datastore();
 #  $servers->setValue('login','bind_id','cn=Manager,dc=example,dc=com');
 
 /* Your LDAP password. If you specified an empty bind_id above, this MUST also
-   be blank. */
+ be blank. */
 // $servers->setValue('login','bind_pass','');
 #  $servers->setValue('login','bind_pass','secret');
 
@@ -380,15 +380,16 @@ $servers = new Datastore();
 // $servers->setValue('server','tls_key',null);
 #  $servers->setValue('server','tls_key','/etc/pki/tls/private/ldap_user.key');
 
-$servers->newServer('ldap_pla');
-$servers->setValue('server','name','10.0.0.50');
-$servers->setValue('server','host','10.0.0.50');
-$servers->setValue('server','port',31389);
-$servers->setValue('server','base',array('dc=example,dc=org'));
-$servers->setValue('login','auth_type','cookie');
-$servers->setValue('login','bind_id','cn=admin,dc=example,dc=org');
-$servers->setValue('login','bind_pass','adminpassword');
-$servers->setValue('server','tls',false);
+// modify server config here
+$servers->newServer("ldap_pla");
+$servers->setValue("server", "name", "10.0.0.50");
+$servers->setValue("server", "host", "10.0.0.50");
+$servers->setValue("server", "port", 31389);
+$servers->setValue("server", "base", ["dc=example,dc=org"]);
+$servers->setValue("login", "auth_type", "cookie");
+$servers->setValue("login", "bind_id", "cn=admin,dc=example,dc=org");
+$servers->setValue("login", "bind_pass", "adminpassword");
+$servers->setValue("server", "tls", false);
 
 /************************************
  *      SASL Authentication         *
@@ -438,11 +439,11 @@ $servers->setValue('server','tls',false);
 #  $servers->setValue('sasl','authz_id_replacement','$1');
 
 /* SASL auth security props.
-   See http://beepcore-tcl.sourceforge.net/tclsasl.html#anchor5 for explanation. */
+ See http://beepcore-tcl.sourceforge.net/tclsasl.html#anchor5 for explanation. */
 // $servers->setValue('sasl','props',null);
 
 /* Default password hashing algorithm. One of md5, ssha, sha, md5crpyt, smd5,
-   blowfish, crypt or leave blank for now default algorithm. */
+ blowfish, crypt or leave blank for now default algorithm. */
 // $servers->setValue('appearance','pla_password_hash','md5');
 
 /* If you specified 'cookie' or 'session' as the auth_type above, you can
@@ -455,7 +456,7 @@ $servers->setValue('server','tls',false);
 // $servers->setValue('login','attr','dn');
 
 /* Base DNs to used for logins. If this value is not set, then the LDAP server
-   Base DNs are used. */
+ Base DNs are used. */
 // $servers->setValue('login','base',array());
 
 /* If 'login,attr' is used above such that phpLDAPadmin will search for your DN
@@ -480,11 +481,11 @@ $servers->setValue('server','tls',false);
 // $servers->setValue('login','fallback_dn',false);
 
 /* Specify true If you want phpLDAPadmin to not display or permit any
-   modification to the LDAP server. */
+ modification to the LDAP server. */
 // $servers->setValue('server','read_only',false);
 
 /* Specify false if you do not want phpLDAPadmin to draw the 'Create new' links
-   in the tree viewer. */
+ in the tree viewer. */
 // $servers->setValue('appearance','show_create',true);
 
 /* Set to true if you would like to initially open the first level of each tree. */
@@ -494,7 +495,7 @@ $servers->setValue('server','tls',false);
 // $servers->setValue('appearance','show_authz',false);
 
 /* This feature allows phpLDAPadmin to automatically determine the next
-   available uidNumber for a new entry. */
+ available uidNumber for a new entry. */
 // $servers->setValue('auto_number','enable',true);
 
 /* The mechanism to use when finding the next available uidNumber. Two possible
@@ -509,7 +510,7 @@ $servers->setValue('server','tls',false);
 #  $servers->setValue('auto_number','search_base','ou=People,dc=example,dc=com');
 
 /* The minimum number to use when searching for the next available number
-   (only when 'search' is used for auto_number. */
+ (only when 'search' is used for auto_number. */
 // $servers->setValue('auto_number','min',array('uidNumber'=>1000,'gidNumber'=>500));
 
 /* If you set this, then phpldapadmin will bind to LDAP with this user ID when
@@ -552,16 +553,16 @@ $servers->setValue('server','tls',false);
 #  $servers->setValue('login','timeout',30);
 
 /* Set this if you want phpldapadmin to perform rename operation on entry which
-   has children. Certain servers are known to allow it, certain are not. */
+ has children. Certain servers are known to allow it, certain are not. */
 // $servers->setValue('server','branch_rename',false);
 
 /* If you set this, then phpldapadmin will show these attributes as
-   internal attributes, even if they are not defined in your schema. */
+ internal attributes, even if they are not defined in your schema. */
 // $servers->setValue('server','custom_sys_attrs',array(''));
 #  $servers->setValue('server','custom_sys_attrs',array('passwordExpirationTime','passwordAllowChangeTime'));
 
 /* If you set this, then phpldapadmin will show these attributes on
-   objects, even if they are not defined in your schema. */
+ objects, even if they are not defined in your schema. */
 // $servers->setValue('server','custom_attrs',array(''));
 #  $servers->setValue('server','custom_attrs',array('nsRoleDN','nsRole','nsAccountLock'));
 
@@ -647,10 +648,6 @@ $servers->setValue('server','custom_attrs',array('nsRoleDN','nsRole','nsAccountL
 $servers->setValue('server','force_may',array('uidNumber','gidNumber','sambaSID'));
 */
 
-
-
-
-
 /***********************************************************************************
  * If you want to configure Google reCAPTCHA on autentication form, do so below.   *
  * Remove the commented lines and use this section as a template for all           *
@@ -659,9 +656,8 @@ $servers->setValue('server','force_may',array('uidNumber','gidNumber','sambaSID'
  * IMPORTANT: Select reCAPTCHA v2   on  Type of reCAPTCHA                          *
  ***********************************************************************************/
 
-
-$config->custom->session['reCAPTCHA-enable'] = false;
-$config->custom->session['reCAPTCHA-key-site'] = '<put-here-key-site>';
-$config->custom->session['reCAPTCHA-key-server'] = '<put-here-key-server>';
+$config->custom->session["reCAPTCHA-enable"] = false;
+$config->custom->session["reCAPTCHA-key-site"] = "<put-here-key-site>";
+$config->custom->session["reCAPTCHA-key-server"] = "<put-here-key-server>";
 
 ?>

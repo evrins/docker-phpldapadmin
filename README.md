@@ -26,12 +26,27 @@ To remedy the situation, these images have been written with security, simplicit
 |Versioned tags             |✅    | Offer versioned tags for stability.|
 
 ## Running this container
-This container only contains phpldapadmin and the necessary PHP (PHP-FPM) packages. In other words, this container only runs the PHP process and no HTTP server (which is how things should be).  
+This container only contains phpldapadmin and the necessary PHP (PHP-FPM) packages. In other words, this container only runs the PHP process and no HTTP server (which is how things should be).
 You will therefore need an accompanying HTTP server. Luckily, the ```docker-compose.yml``` in the source repository contains a complete example of running this container with nginx and will work without additional steps.
 
 ### Configuration
 By default, the configuration files can be found on the named volume and is currently the only way to configure phpldapadmin.
 See ```Dockerfile``` and ```docker-compose.yml``` (<https://github.com/kalaksi/docker-phpldapadmin>) for more details.
+go to comment `modify server config here` in config.php to change your config
+
+eg.
+```php
+$servers->newServer("ldap_pla");
+$servers->setValue("server", "name", "10.0.0.50");
+$servers->setValue("server", "host", "10.0.0.50");
+$servers->setValue("server", "port", 31389);
+$servers->setValue("server", "base", ["dc=example,dc=org"]);
+$servers->setValue("login", "auth_type", "cookie");
+$servers->setValue("login", "bind_id", "cn=admin,dc=example,dc=org");
+$servers->setValue("login", "bind_pass", "adminpassword");
+$servers->setValue("server", "tls", false);
+```
+
 
 ### Supported tags
 See the ```Tags``` tab on Docker Hub for specifics. Basically you have:
@@ -45,8 +60,8 @@ See the repository on <https://github.com/kalaksi/docker-phpldapadmin>.
 All kinds of contributions are welcome!
 
 ## License
-Copyright (c) 2018 kalaksi@users.noreply.github.com. See [LICENSE](https://github.com/kalaksi/docker-phpldapadmin/blob/master/LICENSE) for license information.  
+Copyright (c) 2018 kalaksi@users.noreply.github.com. See [LICENSE](https://github.com/kalaksi/docker-phpldapadmin/blob/master/LICENSE) for license information.
 
-As with all Docker images, the built image likely also contains other software which may be under other licenses (such as software from the base distribution, along with any direct or indirect dependencies of the primary software being contained).  
-  
+As with all Docker images, the built image likely also contains other software which may be under other licenses (such as software from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
+
 As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
